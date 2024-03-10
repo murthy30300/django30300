@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Navigation Bar</title>
+<!--	<link rel="stylesheet" href="{% static 'CSS/login.css' %}">-->
+	<link rel="stylesheet" href="{% static 'CSS/nav.css' %}">
+
+
+</head>
+<body>
+	<nav class="navbar">
+		<div class="navdiv">
+			<div class="logo"><a href="{ % url 'userhomepage' %}">Reserve My Room</a> </div>
+			<ul>
+				<li><a href="{% url 'userhomepage' %}">home</a></li>
+				<li><a href="{% url 'About' %}">About</a></li>
+				<li><a href="{% url 'Contact' %}">Contact</a></li>
+				<li><a href="{% url 'userviewhotel' %}">Hotel List</a></li>
+				<button><a href="{% url 'signin' %}">SignIn</a></button>
+				<button><a href="{% url 'logout' %}">Logout</a></button>
+
+				 <span>Welcome, {{ user.username }}</span>
+			</ul>
+
+
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href={% url 'userviewprofile' %}>View Profile</a></li>
+            <li><a class="dropdown-item" href={% url 'logout' %}>Logout</a></li>
+          </ul>
+        </li>
+		</div>
+	</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

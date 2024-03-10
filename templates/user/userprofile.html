@@ -1,0 +1,50 @@
+{% include 'navbar/userhomepage.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" href="CSS/userprofile.css">
+</head>
+<body>
+  <h1>Profile</h1>
+  <form action="{ % url 'userhomepage' % }" method="post">
+    <div class="form-group">
+      <label for="first_name">First Name:</label>
+      <input type="text" name="first_name" id="first_name" required>
+    </div>
+    <div class="form-group">
+      <label for="middle_name">Middle Name:</label>
+      <input type="text" name="middle_name" id="middle_name">
+    </div>
+    <div class="form-group">
+      <label for="last_name">Last Name:</label>
+      <input type="text" name="last_name" id="last_name" required>
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Phone Number:</label>
+      <input type="tel" name="phone_number" id="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required>
+    </div>
+    <div class="form-group">
+      <label for="date_of_birth">Date of Birth:</label>
+      <input type="date" name="date_of_birth" id="date_of_birth" required>
+    </div>
+    <div class="form-group">
+      <button type="submit">Update Profile</button>
+    </div>
+  </form>
+
+  <script src="https://code.jquery.com/ui/1.13.2/datepicker/jquery-ui.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $("#date_of_birth").datepicker();
+      });
+  </script>
+</body>
+</html>

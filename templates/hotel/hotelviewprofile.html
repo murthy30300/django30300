@@ -1,0 +1,89 @@
+{% include 'navbar/hotelnav.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+    .profile-header {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        padding: 50px 0;
+    }
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        margin: 0 auto;
+        display: block;
+        object-fit: cover;
+    }
+    .profile-name {
+        font-size: 24px;
+        margin-top: 20px;
+    }
+    .profile-bio {
+        margin-top: 20px;
+    }
+    .social-links {
+        margin-top: 20px;
+    }
+    .social-links a {
+        color: #007bff;
+        margin-right: 10px;
+        font-size: 20px;
+    }
+</style>
+</head>
+<body>
+{% block body %}
+<img src='/static/images/default_profile.png'  alt="profile picture" height='200px' width="200px" class="mx-auto d-block">
+<p class="text-center">UserName: {{ user }}</p>
+
+<p class="text-center">Joined on: {{ user.date_joined }}</p>
+
+{% if user.email %}
+<p class="text-center">Email: {{ user.email }}</p>
+{% else %}
+<form method="post" action={% url 'hoteladdemail' %}>
+    {% csrf_token %}
+<input type="text" name="emailu">
+    <button type="submit">add email</button>
+</form>
+{% endif %}
+
+{% if user.first_name %}
+<p class="text-center">First Name: {{ user.first_name }}</p>
+{% else %}
+<form method="post" action={% url 'hoteladdfirstname' %}>
+    {% csrf_token %}
+<input type="text" name="firstnameu">
+    <button type="submit">add Company name</button>
+</form>
+{% endif %}
+
+{% if user.last_name %}
+<p class="text-center">Last Name: {{ user.last_name }}</p>
+{% else %}
+<form method="post" action={% url 'hoteladdlastname' %}>
+    {% csrf_token %}
+<input type="text" name="lastnameu">
+    <button type="submit">add Company quote</button>
+</form>
+{% endif %}
+
+<p class="text-center">Last login: {{ user.last_login }}</p>
+{% endblock %}
+<br>
+<br>
+</body>
+</html>

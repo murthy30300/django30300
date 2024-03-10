@@ -1,0 +1,61 @@
+{% include 'user/projecthomepage.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+{% block body %}
+<div class="container">
+{% if request.user.userprofile.profile_picture %}
+{{request.user.userprofile.profile_picture}}
+{% else %}
+<form method="POST" enctype="multipart/form-data" action="{% url 'userviewprofile' %}" >
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type ='submit'> Submit Profile </button>
+</form>
+{% endif %}
+
+<p >UserName: {{ user }}</p>
+
+<p>Joined on: {{ user.date_joined }}</p>
+
+{% if user.email %}
+<p>Email: {{ user.email }}</p>
+{% else %}
+<form method="post" action={% url 'useraddemail' %}>
+    {% csrf_token %}
+<input type="text" name="emailu">
+    <button type="submit">add email</button>
+</form>
+{% endif %}
+
+{% if user.first_name %}
+<p>First Name: {{ user.first_name }}</p>
+{% else %}
+<form method="post" action={% url 'useraddfirstname' %}>
+    {% csrf_token %}
+<input type="text" name="firstnameu">
+    <button type="submit">add firstname</button>
+</form>
+{% endif %}
+
+{% if user.last_name %}
+<p>Last Name: {{ user.last_name }}</p>
+{% else %}
+<form method="post" action={% url 'useraddlastname' %}>
+    {% csrf_token %}
+<input type="text" name="lastnameu">
+    <button type="submit">add lastname</button>
+</form>
+{% endif %}
+
+<p>Last login: {{ user.last_login }}</p>
+
+</div>
+{% endblock %}
+</body>
+</html>

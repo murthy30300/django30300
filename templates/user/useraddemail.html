@@ -1,0 +1,18 @@
+{% include 'user/projecthomepage.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+<form method="post" action ={% url 'useraddemail' %}>
+    {% csrf_token %}
+    <p>Your email:</p>
+    <input type="text" name="emailu"/>
+    <button type="submit">submit</button>
+</form>
+{% endblock %}
+</body>
+</html>

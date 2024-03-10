@@ -1,0 +1,49 @@
+{% include 'navbar/hotelnav.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel staff management</title>
+  <link type="text/css" rel="stylesheet" href={% static 'css/hotelstaffmanagement.css' %}>
+</head>
+<body>
+<h3><b>HOTEL STAFF MANAGEMENT</b></h3>
+<a href={% url 'hoteladdstaff' %} class='btn btn-success'>Add staff </a>
+<table>
+  <tr>
+    <th>EMP ID.</th>
+    <th>EMP NAME</th>
+    <th>BRANCH</th>
+    <th>WORKING AS</th>
+    <th>IN-TIME</th>
+    <th>OUT-TIME</th>
+    <th>SHIFT-NO</th>
+    <th>PAY CHECK</th>
+    <th>DELETE</th>
+    <th>UPDATE</th>
+  </tr>
+  {% for staff in staff %}
+  <tr>
+    <td>{{ staff.empid }}</td>
+    <td>{{ staff.empname }}</td>
+    <td>{{ staff.branch }}</td>
+    <td>{{ staff.workingas }}</td>
+    <td>{{ staff.intimehr }}:{{ staff.intimemin }}</td>
+    <td>{{ staff.outtimehr }}:{{ staff.outtimemin }}</td>
+    <td>{{ staff.shiftno }}</td>
+    <td>{{ staff.paycheck }}LPA</td>
+      <td>
+           <a href="{% url 'hotelremovestaff' staff.empid %}" class='btn btn-primary btn-block '>Delete</a>
+      </td>
+     <td>
+          <form method="POST" action="{% url 'hotelupdatestaff' staff.empid %}">
+            {% csrf_token %}
+            <button type="submit" class='btn btn-primary btn-block'>Update</button>
+          </form>
+     </td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>

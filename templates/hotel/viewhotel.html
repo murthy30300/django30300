@@ -1,0 +1,36 @@
+{% include 'navbar/hotelnav.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view hotels</title>
+</head>
+<body>
+{% block body %}
+{% for hotels in hotels %}
+<section id="hotels" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Available Hotels</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+
+  <img src="{{ hotels.hotelimage.url }}" class="card-img-top" alt="hotel-image">
+  <div class="card-body">
+    <h5 class="card-title">{{ hotels.hotelname }}</h5>
+    <p class="card-text">{{ hotels.hoteldesc }}</p>
+      <p class="card-text">Location: {{ hotels.hotellocation }}</p>
+      <p class="card-text">Average cost per night: {{ hotels.hotelavgroomcostpn }}</p>
+      <p class="card-text">Total no. of rooms: {{ hotels.noofrooms }}</p>
+    <a href="#" class="btn btn-primary">Delete</a>
+  </div>
+</div>
+     </div>
+  </div>
+          </div>
+<br>
+<br>
+{% endfor %}
+{% endblock %}
+</body>
+</html>
